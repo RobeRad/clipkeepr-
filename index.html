@@ -152,13 +152,11 @@
   /* ── HERO ── */
   .hero {
     position: relative;
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     text-align: center;
-    padding: 130px 24px 80px;
+    padding: 140px 24px 80px;
     overflow: hidden;
   }
 
@@ -255,7 +253,10 @@
     display: block;
   }
 
-  .hero > *:not(.hero-scene) { position: relative; z-index: 1; }
+  /* A tartalmi elemek a jelenet fölé kerülnek — a dekorációs orb kivétel,
+     annak abszolút pozicionáltnak KELL maradnia (különben belefolyik a
+     normál elrendezésbe és letolja a tartalmat). */
+  .hero > *:not(.hero-scene):not(.orb-moss) { position: relative; z-index: 1; }
 
   /* App preview */
   .app-preview {
@@ -804,6 +805,15 @@
   @media (max-width: 768px) {
     nav { padding: 14px 20px; }
     .nav-links { display: none; }
+    .hero { padding-top: 100px; }
+    .hero-scene { height: 380px; }
+    /* Az app-mockup címsora ne feszítse szét a mobilnézetet */
+    .titlebar-ver { display: none; }
+    .titlebar-name {
+      overflow: hidden; text-overflow: ellipsis;
+      white-space: nowrap; min-width: 0; flex: 1;
+    }
+    .app-card { min-width: 0; }
     .problem-strip { padding: 40px 20px; }
     .problem-arrow { display: none; }
     .problem-item { padding: 16px 12px; }
